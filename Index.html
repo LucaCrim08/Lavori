@@ -15,6 +15,12 @@
     <label>Indirizzo:</label> 
     <input type="text" id="indirizzo"> <br>
 
+    <label>Città:</label> 
+    <input type="text" id="città"> <br>
+
+    <label>CAP:</label> 
+    <input type="text" id="cap"> <br>
+
     <button onclick="stampaDati()">Stampa dati</button>
   </div>
 
@@ -28,6 +34,8 @@
       let nome = document.getElementById("nome").value;
       let cognome = document.getElementById("cognome").value;
       let indirizzo = document.getElementById("indirizzo").value;
+      let città = document.getElementById("città").value;
+      let cap = document.getElementById("cap").value;
 
       document.getElementById("risultato").innerHTML = testo;
     }
