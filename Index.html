@@ -1,45 +1,40 @@
 <html>
 <head>
-  <title>Primo programma</title>
+<title>Anagrafica Utente</title>
 </head>
 <body>
-
-  <div class="input-section">
-    <h2>Inserisci i tuoi dati</h2>
-    <label>Nome:</label> <br>
-    <input type="text" id="nome"> <br>
-
-    <label>Cognome:</label> <br>
-    <input type="text" id="cognome"> <br>
-
-    <label>Indirizzo:</label> <br>
-    <input type="text" id="indirizzo"> <br>
-
-    <label>Città:</label> <br>
-    <input type="text" id="città"> <br>
-
-    <label>CAP:</label> <br>
-    <input type="text" id="cap"> <br><br>
-
-    <button onclick="stampaDati()">Stampa dati</button> 
-  </div>
-
-  <div class="output-section" id="output">
-    <h2>Dati Inseriti</h2>
-    <p id="risultato">Nessun dato inserito ancora.</p>
-  </div>
-
-  <script>
-    function stampaDati() {
-      let nome = document.getElementById("nome").value;
-      let cognome = document.getElementById("cognome").value;
-      let indirizzo = document.getElementById("indirizzo").value;
-      let città = document.getElementById("città").value;
-      let cap = document.getElementById("cap").value;
-
-      document.getElementById("risultato").innerHTML = testo;
-    }
-  </script>
-
+<h2>Inserisci Anagrafica Utente</h2>
+<form id="form">
+<label>Nome: <input type="text" id="nome"></label><br>
+<label>Cognome: <input type="text" id="cognome"></label><br>
+<label>Indirizzo: <input type="text" id="indirizzo"></label><br>
+<label>Città: <input type="text" id="citta"></label><br>
+<label>CAP: <input type="text" id="cap"></label><br>
+<label>Data di nascita: <input type="date" id="data"></label><br>
+<button type="button" onclick="mostraRisultato()">Invia</button>
+</form>
+<p id="risultato"></p>
+<script>
+function mostraRisultato() {
+  const nome=document.getElementById("nome").value
+  const cognome=document.getElementById("cognome").value
+  const indirizzo=document.getElementById("indirizzo").value
+  const citta=document.getElementById("citta").value
+  const cap=document.getElementById("cap").value
+  const data=new Date(document.getElementById("data").value)
+  const anno=data.getFullYear()
+  let generazione=""
+  if(anno>=1901&&anno<=1927) generazione="Greatest Generation"
+  else if(anno>=1928&&anno<=1945) generazione="Generazione Silenziosa"
+  else if(anno>=1946&&anno<=1964) generazione="Baby Boomers"
+  else if(anno>=1965&&anno<=1980) generazione="Generazione X"
+  else if(anno>=1981&&anno<=1996) generazione="Millennials"
+  else if(anno>=1997&&anno<=2012) generazione="Generazione Z"
+  else if(anno>=2013) generazione="Generazione Alpha"
+  const eta=new Date().getFullYear()-anno
+  document.getElementById("risultato").innerText=
+  `Nome: ${nome} ${cognome}\nIndirizzo: ${indirizzo}, ${citta} ${cap}\nEtà: ${eta}\nGenerazione: ${generazione}`
+}
+</script>
 </body>
 </html>
