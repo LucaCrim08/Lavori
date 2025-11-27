@@ -39,7 +39,17 @@
     <option value="TPSI">TPSI</option>
     <option value="Matematica">Matematica</option>
   </select>
+  <h3>Hai selezionato:</h3>
+  <div id="risultato"></div>
+  <script>
+    const listbox = document.getElementById("lista");
+    const risultato = document.getElementById("risultato");
 
+    listbox.addEventListener("change", function () {
+      risultato.textContent = listbox.value;
+    });
+  </script>
+  
   <br><br>
 
   <div id="risultato"></div>
@@ -80,17 +90,6 @@
         "<b>Anno di nascita:</b> " + anno + "<br>" +
         "<b>Generazione:</b> " + generazione;      
     }
-  </script>
-   <h3>Hai selezionato:</h3>
-  <div id="risultato"></div>
-
-  <script>
-    const listbox = document.getElementById("lista");
-    const risultato = document.getElementById("risultato");
-
-    listbox.addEventListener("change", function () {
-      risultato.textContent = listbox.value;
-    });
   </script>
 </body>
 </html>
