@@ -33,7 +33,7 @@
   </select><br>
 
   <h2>Inserisci la tua materia preferita:</h2>
-  <select id="myListBox" size="5">
+  <select id="lista" size="5">
     <option value="Italiano">Italiano</option>
     <option value="Storia">Storia</option>
     <option value="TPSI">TPSI</option>
@@ -80,6 +80,17 @@
         "<b>Anno di nascita:</b> " + anno + "<br>" +
         "<b>Generazione:</b> " + generazione;      
     }
+  </script>
+   <h3>Hai selezionato:</h3>
+  <div id="risultato"></div>
+
+  <script>
+    const listbox = document.getElementById("lista");
+    const risultato = document.getElementById("risultato");
+
+    listbox.addEventListener("change", function () {
+      risultato.textContent = listbox.value;
+    });
   </script>
 </body>
 </html>
