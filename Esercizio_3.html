@@ -67,7 +67,6 @@
       var data = document.getElementById("dataNascita").value;
       
       var anno = new Date(data).getFullYear();
-      var materia = document.getelementById("risultato").value;
       var generazione = "";
 
       if (anno >= 1901 && anno <= 1927) generazione = "Greatest Generation";
@@ -86,8 +85,7 @@
         "<b>Città:</b> " + citta + "<br>" +
         "<b>CAP:</b> " + cap + "<br>" +
         "<b>Anno di nascita:</b> " + anno + "<br>" +
-        "<b>Generazione:</b> " + generazione +
-        "<b>Materia preferita:</b> " + materia;      
+        "<b>Generazione:</b> " + generazione;      
     }
   </script>
 </body>
