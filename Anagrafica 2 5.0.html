@@ -1,47 +1,145 @@
+
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Stampa Completa</title>
-    </head>
-    <body>
-        <h2>Elenco Completo Anagrafica 5.0</h2>
-        <table>
-            <tr>
-                <th>Nome</th>
-            </tr>
-            <tr>
-                <div id="cont"></div>
-            </tr>
-        </table>
+<head>
+    <title>Stampa Anagrafica</title>
+    <style>
+        body {
+            font-family: Arial;
+            margin: 20px;
+            background: #f0f0f0;
+        }
         
+        h2 {
+            text-align: center;
+        }
         
-        <script>
-            let par;
-            let con = document.getElementById("cont");
-            let sto = JSON.parse(localStorage.getItem("elenco"));
+        table {
+            border: 1px solid black;
+            border-collapse: collapse;
+            width: 100%;
+        }
+        
+        th, td {
+            border: 1px solid black;
+            padding: 6px;
+        }
+        
+        th {
+            background: #6699cc;
+            color: white;
+        }
+        
+        button {
+            background: #6699cc;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            margin: 20px;
+        }
+        
+        a {
+            text-align: center;
+            display: block;
+        }
+    </style>
+</head>
+<body>
 
-            if (sto && s.length > 0) {
-                for(i=0; i<sto.length; i++){
-                    par = document.createElement("p");
-                    
-                    par.textContent = (i+1) + ") " + 
-                        sto[i].nome + " " + sto[i].cognome + " | " +
-                        "Città: " + sto[i].citta + " (" + sto[i].provincia + "), CAP: " + sto[i].cap + " | " +
-                        "Nato il: " + sto[i].dataNascita + " | Età: " + sto[i].eta + " (" + sto[i].generazione + ") | " +
-                        "Sesso: " + sto[i].sesso + " | " +
-                        "Mezzi: " + (sto[i].mezzi.length > 0 ? sto[i].mezzi.join(", ") : "Nessuno") + " | " +
-                        "Materie: " + (sto[i].materie.length > 0 ? sto[i].materie.join(", ") : "Nessuna");
-                    
-                    con.appendChild(par);
-                }
+<h2>Elenco Anagrafica 5.0</h2>
+
+<div id="contenuto"></div>
+
+<script>
+    let elenco = JSON.parse(localStorage.getItem("elenco")) || [];
+    let div = document.getElementById("contenuto");
+
+    if (elenco.length == 0) {
+        let p = document.createElement("p");
+        p.innerHTML = "Non ci sono persone salvate.";
+        div.appendChild(p);
+    } else {
+        let tabella = document.createElement("table");
+
+        let rigaHeader = document.createElement("tr");
+        
+        let titoli = ["Nr", "Nome Cognome", "Città e Prov", "CAP", "Data Nascita", "Età", "Generazione", "Sesso", "Mezzi", "Materie"];
+        
+        for (let i = 0; i < titoli.length; i++) {
+            let th = document.createElement("th");
+            th.innerHTML = titoli[i];
+            rigaHeader.appendChild(th);
+        }
+        
+        tabella.appendChild(rigaHeader);
+
+        for (let i = 0; i < elenco.length; i++) {
+            let persona = elenco[i];
+            
+            let riga = document.createElement("tr");
+            
+            let td1 = document.createElement("td");
+            td1.innerHTML = i + 1;
+            riga.appendChild(td1);
+
+            let td2 = document.createElement("td");
+            td2.innerHTML = persona.nome + " " + persona.cognome;
+            riga.appendChild(td2);
+            
+            let td3 = document.createElement("td");
+            td3.innerHTML = persona.citta + " (" + persona.provincia + ")";
+            riga.appendChild(td3);
+            
+            let td4 = document.createElement("td");
+            td4.innerHTML = persona.cap;
+            riga.appendChild(td4);
+            
+            let td5 = document.createElement("td");
+            td5.innerHTML = persona.dataNascita;
+            riga.appendChild(td5);
+
+            let td6 = document.createElement("td");
+            td6.innerHTML = persona.eta;
+            riga.appendChild(td6);
+            
+            let td7 = document.createElement("td");
+            td7.innerHTML = persona.generazione;
+            riga.appendChild(td7);
+            
+            let td8 = document.createElement("td");
+            td8.innerHTML = persona.sesso;
+            riga.appendChild(td8);
+            
+            let td9 = document.createElement("td");
+            if (persona.mezzi.length > 0) {
+                td9.innerHTML = persona.mezzi.join(", ");
             } else {
-                con.innerHTML = "<p>L'elenco è vuoto.</p>";
+                td9.innerHTML = "nessuno";
             }
-        </script>
+            riga.appendChild(td9);
+            
+            let td10 = document.createElement("td");
+            if (persona.materie.length > 0) {
+                td10.innerHTML = persona.materie.join(", ");
+            } else {
+                td10.innerHTML = "nessuna";
+            }
+            riga.appendChild(td10);
+            
+            tabella.appendChild(riga);
+        }
 
-        <br>
-        <button onclick=""><a href="Anagrafica%205.0.html">Torna all'inserimento</a></button>
-        <br><br>
-        <button onclick="localStorage.clear(); location.reload();">Svuota tutto l'elenco</button>
-    </body>
+        div.appendChild(tabella);
+    }
+</script>
+
+<br>
+
+<a href="anagrafica5.0.html">Torna indietro</a>
+
+<br><br>
+
+<button onclick="localStorage.clear(); location.reload();">Cancella tutto</button>
+
+</body>
 </html>
